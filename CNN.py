@@ -62,11 +62,10 @@ cnn_plot()
 
 
 #%%
-"""
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=30)
-"""
+
 
 #%%
 """
