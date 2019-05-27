@@ -1,5 +1,5 @@
 #%%
-from CNN import cnn
+from CNN_test import cnn
 #from CNN import cnn_plot
 
 import numpy as np
@@ -20,7 +20,7 @@ DROPOUT = 0.2   # dropout rate in float
 
 #%%
 X, y = import_data(every=False)
-print(X)
+#print(X)
 X_train,X_test,y_train,y_test = train_test_subject(X, y)
 #print(X_train)
 #print(X_train.shape[1:]) #(1000,22)
@@ -34,7 +34,6 @@ model = cnn(input_shape[0],input_shape[1])
 model.fit(X_train, y_train, validation_data=(X_test,y_test),epochs=10,batch_size=64)
 
 #%%
-"""
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_subject(X, y)
 cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256))
@@ -185,4 +184,3 @@ cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256),pool=Fa
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256),act='sigmoid')
-"""

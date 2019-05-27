@@ -27,8 +27,6 @@ def cnn(input_shape_0,input_shape_1):
     
     model = Sequential()
     for i in range(conv_layers):
-        #classifier.add(Conv1D(conv_sizes[i], filter_size, input_shape = X_train.shape[1:],
-        #                      activation = act,kernel_initializer=init,kernel_regularizer=reg))
         model.add(Conv1D(conv_sizes[i], filter_size, input_shape = input_shape,
                               activation='relu',kernel_initializer='he_uniform',kernel_regularizer=reg))
         model.add(BatchNormalization())
