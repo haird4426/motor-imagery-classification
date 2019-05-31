@@ -88,8 +88,6 @@ def nn_test(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc_
 
 
 #%%
-
-data_set()
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 #cnn_plot()

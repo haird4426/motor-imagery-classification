@@ -1,10 +1,7 @@
 #%%
-from CNN_test import cnn_plot
-#from CNN_test import data_set
-from CNN_test import data_set_X_train
-from CNN_test import data_set_X_test
-from CNN_test import data_set_y_train
-from CNN_test import data_set_y_test
+#from CNN_test import *
+from CNN_test import test
+from CNN_test import data_set
 
 import numpy as np
 import importlib 
@@ -32,12 +29,9 @@ DROPOUT = 0.2   # dropout rate in float
 
 #input_shape = list(X_train.shape[1:]) 
 #print(input_shape) #[1000,22]
-X_train = data_set_X_train()
-X_test  = data_set_X_test()
-y_train = data_set_y_train()
-y_test  = data_set_y_test()
 
-cnn_plot(X_train,X_test,y_train,y_test)
+X_train,X_test,y_train,y_test = data_set()
+test(X_train,X_test,y_train,y_test)
 
 #%%
 """
