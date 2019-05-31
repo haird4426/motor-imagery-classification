@@ -97,12 +97,19 @@ nn_test()
 #X, y = import_data_test(every=False)
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
-print(X) #３重構造のリスト
+#print(X) #３重構造のリスト
+#print(np.shape(X_train)) #(2508, 1000, 22)
+#print(X_train.shape[1:]) #(1000,22)
+#print(X_train.shape[1:][1]) #22
+#print(X_test)
+#print(np.shape(X_test)) #(50, 1000, 22)
+print(X_train.shape[1:]) #(1000,22)
+print(X_train.shape[1:][1]) #22
 #print(y)  #0,1,2,3のいずれか→正解ラベル？
 #print(X_train) 
 #print(y_test) 
 
-cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=30)
+cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=10)
 
 
 #%%

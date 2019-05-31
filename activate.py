@@ -1,7 +1,6 @@
 #%%
 #from CNN_test import *
-from CNN_test import test
-from CNN_test import data_set
+from CNN_test import data_set,cnn_test
 
 import numpy as np
 import importlib 
@@ -31,7 +30,7 @@ DROPOUT = 0.2   # dropout rate in float
 #print(input_shape) #[1000,22]
 
 X_train,X_test,y_train,y_test = data_set()
-test(X_train,X_test,y_train,y_test)
+cnn_test(X_train,X_test,y_train,y_test)
 
 #%%
 """

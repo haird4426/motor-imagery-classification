@@ -24,7 +24,7 @@ def data_set():
     
     return X_train,X_test,y_train,y_test
 
-def test(X_train,X_test,y_train,y_test):
+def cnn_test(X_train,X_test,y_train,y_test):
     conv_layers=2
     conv_sizes=(64,128)
     filter_size=3

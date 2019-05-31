@@ -30,7 +30,7 @@ def import_data_test(every=False):
         electrodes = 25
     else:
         electrodes = 22
-    X,y = [],[]
+    X, y = [],[]
     for i in range(9):
         B01T = h5py.File('grazdata/B0' + str(i + 1) + 'T.mat', 'r')
         X1 = np.copy(B01T['image'])
