@@ -88,14 +88,22 @@ def nn_test(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc_
 
 
 #%%
+
+data_set()
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 #cnn_plot()
 nn_test()
 
 #%%
+#X, y = import_data_test(every=False)
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
+print(X) #３重構造のリスト
+#print(y)  #0,1,2,3のいずれか→正解ラベル？
+#print(X_train) 
+#print(y_test) 
+
 cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=30)
 
 

@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import importlib 
+from preprocessing import *
 import preprocessing
 importlib.reload(preprocessing)
 #from preprocessing import *
@@ -17,8 +19,32 @@ from keras import regularizers as regu
 #optim='adam'
 #pool=True
 
-def cnn(input_shape_0,input_shape_1):
+def data_set_X_train():
+    X, y = import_data(every=False)
+    X_train,X_test,y_train,y_test = train_test_total(X, y)
     
+    return X_train
+
+def data_set_X_test():
+    X, y = import_data(every=False)
+    X_train,X_test,y_train,y_test = train_test_total(X, y)
+    
+    return X_test
+
+def data_set_y_train():
+    X, y = import_data(every=False)
+    X_train,X_test,y_train,y_test = train_test_total(X, y)
+    
+    return y_train
+
+def data_set_y_test():
+    X, y = import_data(every=False)
+    X_train,X_test,y_train,y_test = train_test_total(X, y)
+    
+    return y_test
+
+"""
+def cnn(input_shape_0,input_shape_1):    
     input_shape = (1000,22)
     filter_size=3
     conv_layers=2
@@ -44,11 +70,21 @@ def cnn(input_shape_0,input_shape_1):
     return model
 
 """
-import matplotlib.pyplot as plt
-def cnn_plot(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc_sizes=(4096,2048),
-        dropout=0.5,pool_size=2,init='he_uniform',act='relu',optim='adam',pool=True,
-        reg = reg.l2(0.05),epochs=10):
-
+def cnn_plot(X_train,X_test,y_train,y_test):
+    conv_layers=3
+    conv_sizes=(64,128,256)
+    filter_size=3
+    fc_layers=2
+    fc_sizes=(4096,2048)
+    dropout=0.5
+    pool_size=2
+    init='he_uniform'
+    act='relu'
+    optim='adam'
+    pool=True
+    reg = regu.l2(0.05)
+    epochs=10
+    
     classifier = Sequential()
     for i in range(conv_layers):
         classifier.add(Conv1D(conv_sizes[i], filter_size, input_shape = X_train.shape[1:],
@@ -79,7 +115,6 @@ def cnn_plot(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc
     plt.xlabel('Epoch')
     plt.legend(['Train', 'Test'], loc='upper left')
     plt.show()
-"""
 
 """
 def create_cnn(input_shape,dropout,print_summary):

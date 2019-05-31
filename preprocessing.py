@@ -1,7 +1,6 @@
 import h5py
 import numpy as np
 
-
 def import_data(every=False):
     if every:
         electrodes = 25
@@ -26,6 +25,29 @@ def import_data(every=False):
     y = [y[i] - np.min(y[i]) for i in range(len(y))]
     return X, y
 
+def import_data_test(every=False):
+    if every:
+        electrodes = 25
+    else:
+        electrodes = 22
+    X,y = [],[]
+    for i in range(9):
+        B01T = h5py.File('grazdata/B0' + str(i + 1) + 'T.mat', 'r')
+        X1 = np.copy(B01T['image'])
+        X.append(X1[:, :electrodes, :])
+        y1 = np.copy(B01T['type'])
+        y1 = y1[0, 0:X1.shape[0]:1]
+        y.append(np.asarray(y1, dtype=np.int32))
+
+    for subject in range(9):
+        delete_list = []
+        for trial in range(288):
+            if np.isnan(X[subject][trial, :, :]).sum() > 0:
+                delete_list.append(trial)
+        X[subject] = np.delete(X[subject], delete_list, 0)
+        y[subject] = np.delete(y[subject], delete_list)
+    y = [y[i] - np.min(y[i]) for i in range(len(y))]
+    return X, y
 
 def train_test_subject(X, y, train_all=True, standardize=True):
 
@@ -79,4 +101,4 @@ def train_test_total(X, y, standardize=True):
     X_train = np.transpose(X_train, (0, 2, 1))
     X_test = np.transpose(X_test, (0, 2, 1))
 
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test    

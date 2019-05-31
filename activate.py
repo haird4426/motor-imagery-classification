@@ -1,6 +1,10 @@
 #%%
-from CNN_test import cnn
-#from CNN import cnn_plot
+from CNN_test import cnn_plot
+#from CNN_test import data_set
+from CNN_test import data_set_X_train
+from CNN_test import data_set_X_test
+from CNN_test import data_set_y_train
+from CNN_test import data_set_y_test
 
 import numpy as np
 import importlib 
@@ -19,25 +23,27 @@ from keras import regularizers as reg
 DROPOUT = 0.2   # dropout rate in float
 
 #%%
-X, y = import_data(every=False)
+#X, y = import_data(every=False)
 #print(X)
-X_train,X_test,y_train,y_test = train_test_subject(X, y)
+#X_train,X_test,y_train,y_test = train_test_subject(X, y)
 #print(X_train)
 #print(X_train.shape[1:]) #(1000,22)
 #print(X_train.shape[1:][1]) #22
 
-input_shape = list(X_train.shape[1:]) 
+#input_shape = list(X_train.shape[1:]) 
 #print(input_shape) #[1000,22]
+X_train = data_set_X_train()
+X_test  = data_set_X_test()
+y_train = data_set_y_train()
+y_test  = data_set_y_test()
 
-model = cnn(input_shape[0],input_shape[1])
-
-model.fit(X_train, y_train, validation_data=(X_test,y_test),epochs=10,batch_size=64)
+cnn_plot(X_train,X_test,y_train,y_test)
 
 #%%
+"""
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_subject(X, y)
 cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256))
-
 
 #%%
 X, y = import_data(every=False)
@@ -184,3 +190,4 @@ cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256),pool=Fa
 X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 cnn(conv_layers=2,conv_sizes=(64,64),fc_layers=3,fc_sizes=(1024,512,256),act='sigmoid')
+"""
