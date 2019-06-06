@@ -96,18 +96,32 @@ nn_test()
 #%%
 #X, y = import_data_test(every=False)
 X, y = import_data(every=False)
-X_train,X_test,y_train,y_test = train_test_total(X, y)
-#print(X) #３重構造のリスト
-#print(np.shape(X_train)) #(2508, 1000, 22)
-#print(X_train.shape[1:]) #(1000,22)
-#print(X_train.shape[1:][1]) #22
-#print(X_test)
-#print(np.shape(X_test)) #(50, 1000, 22)
-print(X_train.shape[1:]) #(1000,22)
-print(X_train.shape[1:][1]) #22
-#print(y)  #0,1,2,3のいずれか→正解ラベル？
-#print(X_train) 
-#print(y_test) 
+#print(X)
+X_train,X_test,y_train,y_test = train_test_total(X, y) 
+#↑をモデル作成内でやればモジュール化できるかも
+
+axis_x = []
+axis_y = X_train[3][0]
+for i in range(22):
+    axis_x.append(i)
+print(axis_x)
+print(axis_y)
+plt.scatter(axis_x,axis_y)
+plt.show()
+
+#print(X_train.dtype)   #float64
+#print(X_train.shape) #(2508, 1000, 22)
+#print(X_test.shape)  #(50, 1000, 22)
+#print(y_train.shape) #2508
+#print(y_test.shape)   #50
+
+#print(X)        
+#print(X_train) 　#3次元リスト 
+#print(X_test)  #3次元リスト
+
+#print(y)       
+#print(y_train)  #0,1,2,3のいずれか　１次元リスト
+#print(y_test)    #0,1,2,3のいずれか　１次元リスト 
 
 cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=10)
 
