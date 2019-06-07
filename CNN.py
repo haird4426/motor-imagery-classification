@@ -36,6 +36,9 @@ def cnn_plot(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc
         model.add(Dense(fc_sizes[j], activation = act,kernel_initializer=init,kernel_regularizer=reg))
         model.add(Dropout(dropout))
     model.add(Dense(4, activation = 'softmax',kernel_initializer=init))
+    
+    model.summary()
+    
     model.compile(optimizer = optim, loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
     history = model.fit(X_train, y_train, validation_data=(X_test,y_test),epochs=epochs,batch_size=64)
     
@@ -66,6 +69,7 @@ def nn_test(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc_
     model.add(Dropout(0.5))
 
     model.add(Dense(4,activation="softmax"))
+    
     model.compile(loss="categorical_crossentropy",optimizer="adam",metrics=["accuracy"])
 
     history = model.fit(X_train,y_train,validation_data=(X_test,y_test),epochs=30)
@@ -92,7 +96,7 @@ X, y = import_data(every=False)
 X_train,X_test,y_train,y_test = train_test_total(X, y)
 #cnn_plot()
 nn_test()
-
+    
 #%%
 #X, y = import_data_test(every=False)
 X, y = import_data(every=False)
@@ -124,7 +128,6 @@ plt.show()
 #print(y_test)    #0,1,2,3のいずれか　１次元リスト 
 
 cnn_plot(conv_layers=3,conv_sizes=(32,32,32),fc_layers=2,fc_sizes=(512,256),epochs=10)
-
 
 #%%
 """
