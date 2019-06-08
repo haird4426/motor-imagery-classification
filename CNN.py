@@ -23,10 +23,6 @@ def cnn_plot(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc
         #畳み込み層
         model.add(Conv1D(conv_sizes[i], filter_size, input_shape = X_train.shape[1:],
                               activation = act,kernel_initializer=init,kernel_regularizer=reg))
-        #model.add(Conv1D(conv_sizes[i], filter_size, input_shape = X_train.shape[1:],
-                              #activation = act,kernel_initializer=init,kernel_regularizer=reg))
-        #model.add(Conv1D(conv_sizes[i], filter_size, input_shape = X_train.shape[1:],
-                              #activation = act,kernel_initializer=init,kernel_regularizer=reg))
         
         model.add(BatchNormalization())
         if pool:
@@ -57,39 +53,6 @@ def cnn_plot(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc
     plt.xlabel('Epoch')
     plt.legend(['Train', 'Test'], loc='upper left')
     plt.show()
-
-#%%
-def nn_test(conv_layers=3,conv_sizes=(64,128,256),filter_size=3, fc_layers=2,fc_sizes=(4096,2048),
-        dropout=0.5,pool_size=2,init='he_uniform',act='relu',optim='adam',pool=True,
-        reg = reg.l2(0.05),epochs=10):
-    model = Sequential()
-    for i in range(conv_layers):
-        model.add(Dense(conv_sizes[i],activation="relu",input_shape = X_train.shape[1:]))
-
-    model.add(Dropout(0.5))
-
-    model.add(Dense(4,activation="softmax"))
-    
-    model.compile(loss="categorical_crossentropy",optimizer="adam",metrics=["accuracy"])
-
-    history = model.fit(X_train,y_train,validation_data=(X_test,y_test),epochs=30)
-
-    plt.plot(history.history['acc'])
-    plt.plot(history.history['val_acc'])
-    plt.title('Model accuracy')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.show()
-
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Model loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.show()
-
 
 #%%
 X, y = import_data(every=False)
